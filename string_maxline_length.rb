@@ -1,10 +1,12 @@
 class String
 	@@default_maxlen = 76
 
-	# could do something with
-	# 	newstring = string.split(/\s/).reverse.join(' ') # by word
-	# possibly
+	# Purpose: split a string into multiple smaller string based on some
+	# maximum length.  It will split on word boundaries.
 	def split_line_by_word(maxlength=@@default_maxlen, *args)
+		# could do something with
+		# 	newstring = string.split(/\s/).reverse.join(' ') # by word
+		# possibly
 		lines=Array.new
 		i=0
 		self.split.each { |w|
@@ -34,18 +36,6 @@ class String
 		return lines
 	end
 
-	def split_by_word(maxlength=@@default_maxlen, *args)
-		return self.split_line_by_word(maxlength,args)
-	end
-
-	def split_by_char(maxlength=@@default_maxlen, *args)
-		return self.split_line_by_character(maxlength,args)
-	end
-
-	def split_by_character(maxlength=@@default_maxlen, *args)
-		return self.split_line_by_character(maxlength,args)
-	end
-
 	def split_line(maxlength=@@default_maxlen, type = "word", *args)
 		if type == "character" or type == "char"
 			return self.split_line_by_character(maxlength)
@@ -53,6 +43,10 @@ class String
 			return self.split_line_by_word(maxlength)
 		end
 	end
+
+	alias split_by_word split_line_by_word
+	alias split_by_char split_line_by_character
+	alias split_by_character split_line_by_character
 end
 
 __END__
