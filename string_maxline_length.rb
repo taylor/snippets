@@ -3,28 +3,41 @@ class String
 
 	# Purpose: split a string into multiple smaller string based on some
 	# maximum length.  It will split on word boundaries.
-	def split_line_by_word(maxlength=@@default_maxlen, *args)
+	def split_line_by_word(maxlength=@@default_maxlen)
 		# could do something with
 		# 	newstring = string.split(/\s/).reverse.join(' ') # by word
 		# possibly
-		lines=Array.new
+		lines = []
 		i=0
 		self.split.each { |w|
-			if not lines[i].nil? and lines[i].length + w.length + 1 >= maxlength
-				i += 1
-			end
-
 			if lines[i].nil?
 				lines[i] = w
+			elsif lines[i].length + w.length + 1 >= maxlength
+				i += 1
+				lines[i] = w
 			else
-				lines[i] += " " + w
+				lines[i] << " " + w
 			end
 		}
 		return lines
 	end
 
-	def split_line_by_character(maxlength=@@default_maxlen, *args)
+	def split_line_by_word2(maxlength=@@default_maxlen)
 		lines=Array.new
+		i=0
+		line=self.to_s
+
+		while line.length > maxlength
+			x=line.index("", maxlength - 4)
+			lines[i] = line[0..x]
+			line = line[(x+1)..-1]
+			i += 1
+		end
+		return lines
+	end
+
+	def split_line_by_character(maxlength=@@default_maxlen)
+		lines=[]
 		i=0
 		line=self.to_s
 		while line.length > maxlength
