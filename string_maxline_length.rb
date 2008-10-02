@@ -9,15 +9,14 @@ class String
 		# possibly
 		lines = []
 		i=0
+		lines[i] = ""
 		self.split.each { |w|
-			if lines[i].nil?
-				lines[i] = w
-			elsif lines[i].length + w.length + 1 >= maxlength
+			if lines[i].length + w.length + 1 >= maxlength
 				i += 1
-				lines[i] = w
-			else
-				lines[i] << " " + w
+				lines[i] = ""
 			end
+			lines[i] << " " if not lines[i].empty?
+			lines[i] << w
 		}
 		return lines
 	end
