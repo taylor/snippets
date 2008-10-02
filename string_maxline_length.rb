@@ -43,8 +43,10 @@ class String
 			x=line.index("", maxlength - 4)
 			lines[i] = line[0..x]
 			line = line[(x+1)..-1]
+			puts "line now- #{line}"
 			i += 1
 		end
+		lines[i] = line
 		return lines
 	end
 
