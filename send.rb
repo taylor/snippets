@@ -32,13 +32,13 @@ class BabyBrain
   end
 end
 
+puts "Greetings.  Welcome to the inner workings of a babies mind"
 babybrain = BabyBrain.new
 while 1
   print "What should I do now? "
   begin
     puts babybrain.send gets.strip.downcase
   rescue NoMethodError
-    puts "good"
     puts babybrain.whoknows
   rescue Interrupt
     puts babybrain.cry + " oops i pooped"
