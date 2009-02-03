@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItemSearchResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2005-07-26">
+        <OperationRequest>
+                <HTTPHeaders>
+                        <Header Name="UserAgent">
+                        </Header>
+                </HTTPHeaders>
+                <RequestId>0R0JXNCFH</RequestId>
+                <Arguments>
+                        <Argument Name="SearchIndex" Value="Blended">
+                        </Argument>
+                        <Argument Name="ItemPage" Value="1">
+                        </Argument>
+                        <Argument Name="Service" Value="AWSECommerceService">
+                        </Argument>
+                        <Argument Name="Keywords" Value="diaper">
+                        </Argument>
+                        <Argument Name="ResponseGroup" Value="Large">
+                        </Argument>
+                        <Argument Name="Operation" Value="ItemSearch">
+                        </Argument>
+                        <Argument Name="Version" Value="2005-07-26">
+                        </Argument>
+                </Arguments>
+                <RequestProcessingTime>1.88467121124268</RequestProcessingTime>
+        </OperationRequest>
+        <Items>
+                <Request>
+                        <IsValid>True</IsValid>
+                        <ItemSearchRequest>
+                                <ItemPage>1</ItemPage>
+                                <Keywords>baloon</Keywords>
+                                <ResponseGroup>Large</ResponseGroup>
+                                <SearchIndex>Blended</SearchIndex>
+                        </ItemSearchRequest>
+                </Request>
+        </Items>
+</ItemSearchResponse>

@@ -1,0 +1,7 @@
+
+Using libxml_helper
+  http://pastie.org/359318
+
+http://libxml.rubyforge.org/rdoc/
+
+ 
