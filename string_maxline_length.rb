@@ -32,6 +32,7 @@ class String
 			line = line[(x+1)..-1]
 			i += 1
 		end
+		lines[i] = line
 		return lines
 	end
 
