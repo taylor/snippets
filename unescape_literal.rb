@@ -13,6 +13,13 @@ require 'pp'
 #   \n – newline
 #   \s – space
 #   \t – tab 
+#
+# Yes you can use eval instead if desired - eval('"' + str + '"')
+# The point of this was avoiding the use of eval.  Why you ask?  Because if you
+# just use something like the solution above you can be "attacked" with
+# something like this
+#
+#   str = "" + system("evil system commands....") + ""
 
 def unescape(str)
   str.gsub(/\\[\\'"abrnst]/) { |s|
