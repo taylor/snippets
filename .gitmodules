@@ -1,0 +1,3 @@
+[submodule "xml_parsing/benchmarks/benchmark_tenderlove"]
+	path = xml_parsing/benchmarks/benchmark_tenderlove
+	url = git://gist.github.com/24605.git
