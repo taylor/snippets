@@ -20,6 +20,11 @@ require 'pp'
 # something like this
 #
 #   str = "" + system("evil system commands....") + ""
+#
+# If you like the eval version then use it in the gsub block so it is just
+# working on 2 characters. Eg:
+#
+#   str.gsub(..) {|s| eval(...)}
 
 def unescape(str)
   str.gsub(/\\[\\'"abrnst]/) { |s|
@@ -35,6 +40,7 @@ def unescape(str)
      end 
   }
 end
+
 
 s='newline\nbell\adoublequote\"backslash\\backspace\bcarriagereturn\rspace\stab\tEND'
 puts unescape(s)
