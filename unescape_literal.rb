@@ -13,10 +13,6 @@ require 'pp'
 #   \n – newline
 #   \s – space
 #   \t – tab 
-#
-# Note:  In Vim just do
-#    :%s/\\n//g
-# or whatever the character is...
 
 def unescape(str)
   str.gsub(/\\[\\'"abrnst]/) { |s|
