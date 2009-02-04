@@ -27,9 +27,7 @@ def unescape(str)
      when 'n'; "\n"
      when 's'; " "
      when 't'; "\t"
-     when '\\'; "\\"
      else
-       puts "unknown found char #{s[1].chr} ascii #{s[1]}"
        s[1].chr
      end 
   }
@@ -58,7 +56,6 @@ s='space\sspace\sspace'
 puts s
 puts unescape(s)
 
-s='backslash \\\\ backslash'
+s='backslash\\\\backslash'
 puts s
 puts unescape(s)
-sn=unescape(s)
