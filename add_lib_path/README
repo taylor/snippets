@@ -1,0 +1,25 @@
+When you have a ruby application that has a lib path for it's modules you need
+someway to include that path for ruby to be able to load them with require.
+Since it is common for the lib directory to be in a parent directory where the
+applications bin directory is you should be able to access it via ../lib.
+Unfortunetly you have to worry about such things as symlinks which can break
+that access.
+
+There are many ways to do work around that including using a shell script such
+as this (from Jim Freeze):
+
+  #!/bin/sh
+  script_path=$(dirname $(cd ${0%/*} && echo $PWD/${0##*/}))
+  lib_path=$(cd "${script_path}/../lib" && echo $PWD)
+  exec ruby -I $lib_path -S "${0}.rb" ${1+"$@"}
+
+You can also find some ruby code that tries to accomplish similar goals.  The
+ruby versions I have seen have been pretty complex and long so I decided to
+write a ruby version that was succint and as short as reasonably possible.  It
+turns out you can have one in as little as 3 lines.
+
+Feel free to download this whole tree and run
+
+  ruby foo/x.rb
+
+or just check out add_lib_path.rb
