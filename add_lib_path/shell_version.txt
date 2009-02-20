@@ -1,6 +1,0 @@
-#!/bin/sh
-GEM_HOME=/Users/jdf/projects/devel/gems/gem-set1
-export GEM_HOME
-script_path=$(dirname $(cd ${0%/*} && echo $PWD/${0##*/}))
-lib_path=$(cd "${script_path}/../lib" && echo $PWD)
-exec ruby -I $lib_path -S "${0}.rb" ${1+"$@"}
