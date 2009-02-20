@@ -1,0 +1,10 @@
+Snippets of code to demonstrate various things. Some of these are just for fun
+and should not be used in "real code."  Take what you see with a grain of salt.
+Other things such as the add_lib_path are showing how to solve a real problem
+in a succinct way.
+
+Of course some of these code samples are overly verbose and completely
+unfactored.  Usually that was to show all of the steps including lots of
+variables which would probably not be used in "real code."
+
+Have fun! :)
