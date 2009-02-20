@@ -64,12 +64,9 @@ class String
 	alias split_by_character split_line_by_character
 end
 
-__END__
-
-s="Simple Ruby line splitter. The other day I needed to split up a large line into smaller ones before sending..., more outlined above allows you to specify what should happen"
+s="Simple Ruby line splitter. The other day I needed to split up a large line into smaller ones before sending. I started playing with different ways to do that.  See code fore more details.  This text should be on lines no more than 76 characters long."
 
 puts "=== ORIGINAL  ==="
 puts s
 puts "=== NEW ==="
-puts split_line(s, 760
-
+puts s.split_line(s, 76)
