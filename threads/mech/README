@@ -1,0 +1,21 @@
+Some scripts to test using threads with WWW::Mechanize
+
+Run generate_linkfile.rb before running thread_mech or the compare script.
+
+It will search google for a random word from /usr/share/dict/words.  Change the
+dictionary location if it is somewhere else.
+
+You can run it multiple times to make the link list grow larger.  Delete the
+file xlinks.yml to start over with no links.
+
+You can then run the comparision script or thread_mech.rb directly.
+
+Example
+
+  ruby generate_linkfile.rb
+  ruby compare_1.8_to_1.9.rb
+
+  or
+
+  ruby generate_linkfile.rb
+  ruby thread_mech.rb xlinks.yml 24
