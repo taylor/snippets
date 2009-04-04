@@ -10,6 +10,10 @@ file xlinks.yml to start over with no links.
 
 You can then run the comparision script or thread_mech.rb directly.
 
+You can pass rand at the end of the other options to thread_mech.rb to randomly
+choose sites from the link file.  compare will randomize for you so no need to
+include the option when running compare.
+
 Example
 
   ruby generate_linkfile.rb
@@ -19,3 +23,10 @@ Example
 
   ruby generate_linkfile.rb
   ruby thread_mech.rb xlinks.yml 24
+
+  or
+
+  ruby generate_linkfile.rb
+  ruby thread_mech.rb xlinks.yml 24 rand
+
+
