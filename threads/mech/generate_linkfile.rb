@@ -2,11 +2,12 @@ require 'rubygems'
 require 'scrubyt'
 require 'yaml'
 
-dict='/usr/share/dict/words'
+@dict='/usr/share/dict/words'
+
 def rand_word
   w=nil
   puts "looking for random word"
-  lines=File.readlines(dict)
+  lines=File.readlines(@dict)
   lines.each_with_index do |l,i|
     if i == rand(lines.size)
       w=l
