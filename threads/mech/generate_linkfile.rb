@@ -2,6 +2,8 @@ require 'rubygems'
 require 'scrubyt'
 require 'yaml'
 
+@VERBOSE=false
+
 @dict='/usr/share/dict/words'
 
 def rand_word
@@ -35,6 +37,6 @@ links = [] unless links
 links += g.collect {|l| l[:link_url].match(/(http:\/\/[^\/]*)/); $1}.uniq
 
 y=File.new(linkfile, "w")
-puts links.to_yaml
+puts links.to_yaml if @VERBOSE
 y.puts links.to_yaml
 y.close

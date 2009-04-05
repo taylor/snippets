@@ -6,6 +6,9 @@ require 'mechanize'
 require 'yaml'
 require 'timeout'
 
+@VERBOSE = ENV['VERBOSE'] ? true : false
+@DEBUG = false
+
 @threads = []
 
 def threadit(url,n=nil)
@@ -16,19 +19,19 @@ def threadit(url,n=nil)
 
     #p @threads
     x=n || "r-#{rand(100)}"
-    puts "thread - #{x} STARTED - #{url}"
+    puts "thread - #{x} STARTED - #{url}" if @VERBOSE
     begin
       Timeout::timeout(10) do
         title = m.get(url).title.strip
       end
     rescue Timeout::Error
-      puts "Timed out trying to get url #{url}"
+      puts "Timed out trying to get url #{url}" if @VERBOSE
     rescue SocketError
-      puts "Socket error for url #{url}...  maybe site now found?"
+      puts "Socket error for url #{url}...  maybe site now found?" if @VERBOSE
     rescue
-      puts "exception in mech caught"
+      puts "exception in mech caught" if @DEBUG
     end
-    puts "thread #{x} DONE - #{url} title #{title}"
+    puts "thread #{x} DONE - #{url} title #{title}" if @VERBOSE
   }
 end
 
@@ -52,7 +55,6 @@ start_dt = DateTime.parse(start_t.to_s)
 puts "Threading #{totalthreads} times - starting #{start_dt}\n\n"
 maxthreads=10
 totalthreads.times { |n|
-  loop_t = DateTime.now
   mtr=nil
   loop do
     @threads.delete_if {|t| t.status == false or t.status == nil }
@@ -60,17 +62,8 @@ totalthreads.times { |n|
 
     break if @threads.size < maxthreads
 
-    puts "max threads #{maxthreads} reached... waiting for some to stop" if mtr.nil?
+    puts "max threads #{maxthreads} reached... waiting for some to stop" if mtr.nil? and @VERBOSE
     mtr=1
-    if DateTime.now.min - loop_t.min > 10
-      puts "It has taken more than 10 minutes! killing current threads..."
-      #@threads.each {|t|t.kill}
-      #@threads[0].kill
-      puts "not"
-    end
-
-    #n=rand(10)+1
-    #sleep n
   end
   url = @choose_rand ? u.choice : u[n]
   threadit(url,n)
