@@ -1,3 +1,4 @@
+require 'rubygems'
 require "inline"
 class MyTest
 	inline do |builder|
@@ -38,4 +39,10 @@ end
 
 t = MyTest.new()
 t.hello
-t.curltest
+#t.curltest
+
+t.hello
+
+sleep 10
+
+
