@@ -5,6 +5,30 @@
 opt={}
 WORDFILE="/usr/share/dict/words"
 
+
+class CChar
+  attr_accessor :cchar, :nums, :nonalpha
+  def initialize
+    @cchar=[]
+    @nums=[]
+    @nonalpha=[]
+    @nums << 0.upto(99).to_a
+    @nonalpha << 33.upto(47).collect {|i| i.chr}
+    @cchar = @nums + @nonalpha
+    @cchar.flatten!
+  end
+
+  def random
+    @cchar[rand(@cchar.length)].to_s
+  end
+
+  def maybe(n=0, x=0)
+    rand(n) > x ? random : ''
+  end
+end
+
+cchar = CChar.new
+
 opt[:minpasslen] = 8
 opt[:secure] = false
 
@@ -15,6 +39,8 @@ maxwordsize=5
 until ARGV.empty?
   if ARGV[0] == "-s"
     opt[:secure] = true
+  elsif ARGV[0] == "-n"
+    opt[:cnum] = true
   elsif ARGV[0] == "-l"
     if not ARGV[1].nil?
       opt[:minpasslen] = ARGV[1].to_i
@@ -30,7 +56,7 @@ File.open(WORDFILE).each_line { |l|
   w << l if l.length <= maxwordsize and l.length >=minwordsize
 }
 
-# TODO: allow more than one password to be created with -n option
+# TODO: allow more than one password to be created with some option.
 rp=""
 cap=false
 while rp.length < opt[:minpasslen]
@@ -40,7 +66,12 @@ while rp.length < opt[:minpasslen]
   else
     cap=true
   end
-  rp=rp+nw
+
+  if opt[:cnum]
+    rp=rp+cchar.maybe(5,2)+nw
+  else
+    rp=rp+nw
+  end
 end 
 
 if opt[:secure]
