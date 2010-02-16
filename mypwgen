@@ -5,7 +5,6 @@
 opt={}
 WORDFILE="/usr/share/dict/words"
 
-
 class CChar
   attr_accessor :cchar, :nums, :nonalpha
   def initialize
@@ -36,6 +35,7 @@ opt[:secure] = false
 minwordsize=3
 maxwordsize=5
 
+#TODO: help option?
 until ARGV.empty?
   if ARGV[0] == "-s"
     opt[:secure] = true
