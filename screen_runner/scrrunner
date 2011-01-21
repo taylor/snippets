@@ -1,0 +1,25 @@
+#!/bin/bash
+
+SCREEN=`which screen`
+
+if [ "$1" = "" ] ; then
+  echo "usage: $0 <dir>"
+  exit 1
+fi
+
+RUNDIR=$1
+SNAME=$(basename $1)
+
+cd $RUNDIR
+
+runfiles=$(find . -maxdepth 1 -type f | sed 's!./!!g')
+
+${SCREEN} -S ${SNAME} -d -m
+
+for runfile in $runfiles ; do
+  ${SCREEN} -x ${SNAME} -X screen -t ${runfile:3} ./${runfile}
+done
+
+cd - > /dev/null 2>&1
+
+echo "Screen session setup with name ${SNAME}"
