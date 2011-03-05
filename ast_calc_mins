@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require "rubygems"
+begin
+ require "fastercsv"
+ myCSV=FasterCSV
+rescue LoadError
+ require 'csv'
+ myCSV=CSV
+end
+
+if ARGV.length == 0
+  puts "no file given"
+  exit
+end
+
+firstcall=nil
+lastcall=nil
+s=i=0
+myCSV.foreach(ARGV[0]) do |r|
+  if i == 0
+    firstcall=r[9] 
+  else
+    lastcall=r[9]
+  end
+  s = s + r[13].to_i
+  i = i+1
+end 
+
+m = s / 60
+h = m / 60
+
+puts "Total calls: #{i}" 
+puts "Minutes: #{m}, Hours: #{h}"
+puts "First call: #{firstcall}, Last call: #{lastcall}"
