@@ -1,0 +1,35 @@
+#!/bin/sh
+
+default_user="root"
+user=${default_user}
+
+homedir=`grep "^${user}:" /etc/passwd | awk -F: '{print $6}'`
+
+ssh_dir="${homedir}/.ssh"
+auth_key_file="${ssh_dir}/authorized_keys"
+
+awssshkey=`/usr/bin/curl -sf http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key`
+
+if [ -z "$awssshkey" -a -f /mnt/openssh_id.pub ] ; then
+	awssshkey=`cat /mnt/openssh_id.pub`
+fi
+
+if [ -z "${awssshkey}" ] ; then
+	exit 1
+fi	
+
+if [ ! -d "$ssh_dir" ] ; then
+	mkdir -p "${ssh_dir}"
+	chmod 700 "${ssh_dir}"
+	chown "${user}" "${ssh_dir}"
+fi
+
+installed=`grep -c "$awssshkey" ${auth_key_file}`
+
+if [ "$installed" = 0 ] ; then
+	touch $auth_key_file
+	echo "$awssshkey" >> $auth_key_file
+fi
+
+chown "${user}" "${auth_key_file}"
+chmod 600 "${auth_key_file}"
