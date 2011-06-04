@@ -24,11 +24,15 @@ if [ ! -d "$ssh_dir" ] ; then
 	chown "${user}" "${ssh_dir}"
 fi
 
-installed=`grep -c "$awssshkey" ${auth_key_file}`
+if [ -f "${auth_key_file}" ] ; then
+        installed=`grep -c "$awssshkey" ${auth_key_file}`
+else
+        installed=0
+fi
 
 if [ "$installed" = 0 ] ; then
-	touch $auth_key_file
-	echo "$awssshkey" >> $auth_key_file
+        touch $auth_key_file
+        echo "$awssshkey" | tee -a $auth_key_file
 fi
 
 chown "${user}" "${auth_key_file}"
