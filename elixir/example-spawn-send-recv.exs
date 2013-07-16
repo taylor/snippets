@@ -1,3 +1,8 @@
+#!/usr/bin/env elixir
+
+# Example of sending and receiving messages with a spawned Process in Elixir
+# Run with elixir thefilename.exs
+
 them = spawn fn ->
   receive do
     {foo, pid} ->
