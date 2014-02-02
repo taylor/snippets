@@ -8,12 +8,12 @@ them = spawn fn ->
     {foo, pid} ->
       IO.puts "Someone with #{inspect(pid)} gave me #{inspect(foo)}"
       IO.puts "I am going to tell them thanks"
-      pid <- {"Thank's person with #{inspect(pid)} for giving me #{inspect(foo)}", self }
+      pid |> send {"Thank's person with #{inspect(pid)} for giving me #{inspect(foo)}", self }
   end
 end
 
 IO.puts "Sending cheese to them via #{inspect(them)}"
-them <- {"cheese", self }
+them |> send {"cheese", self }
 
 receive do
   {foo, pid } ->
